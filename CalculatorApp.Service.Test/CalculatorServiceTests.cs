@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using FakeItEasy;
 
+
 namespace CalculatorApp.Service.Test
 {
     [TestClass]
@@ -14,11 +15,12 @@ namespace CalculatorApp.Service.Test
         private readonly ICalculatorService _calculatorservice;
         private readonly ISimpleCalculator _simpleCalculator;
         private readonly IDiagnosticsDetails _diagnosticsDetails;
+       
 
         public CalculatorServiceTests()
         {
             _simpleCalculator = A.Fake<ISimpleCalculator>();
-            _diagnosticsDetails = A.Fake<IDiagnosticsDetails>();    
+            _diagnosticsDetails = A.Fake<IDiagnosticsDetails>();          
             _calculatorservice = new CalculatorService(_simpleCalculator, _diagnosticsDetails);
         }
 
@@ -35,6 +37,7 @@ namespace CalculatorApp.Service.Test
                     Console.WriteLine($"Result:2");
 
                 });
+          
 
             using (StringWriter sw = new StringWriter())
             {
@@ -58,7 +61,7 @@ namespace CalculatorApp.Service.Test
                     Console.WriteLine($"InvalidOption->Exp");                   
 
                 });
-
+           
             using (StringWriter sw = new StringWriter())
             {
                 Console.SetOut(sw);
@@ -69,5 +72,7 @@ namespace CalculatorApp.Service.Test
             }
 
         }
+
+
     }
 }

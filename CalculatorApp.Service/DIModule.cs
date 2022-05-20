@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using CalculatorApp.Core.Interfaces;
 using CalculatorApp.Core;
+using CalculatorApp.Database.Interfaces;
+using CalculatorApp.Database;
 
 namespace CalculatorApp.Service
 {
@@ -16,6 +18,7 @@ namespace CalculatorApp.Service
         {
            this.Bind<ISimpleCalculator>().To<SimpleCalculator>();
            this.Bind<IDiagnosticsDetails>().To<DiagnosticDetails>();
+           this.Bind<ICalculatAppOperationDetailRepository>().To<CalculatAppOperationDetailRepository>();
         }
     }
 }

@@ -63,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CalculatorApp.Database\CalculatorApp.Database.csproj">
+      <Project>{3B162626-1267-4267-87A0-88F2614ED345}</Project>
+      <Name>CalculatorApp.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CalculatorApp.Service\CalculatorApp.Service.csproj">
       <Project>{53FDCC7A-CB9F-4D09-A4DB-5F4C6B1E8DA1}</Project>
       <Name>CalculatorApp.Service</Name>

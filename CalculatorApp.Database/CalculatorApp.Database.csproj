@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{53FDCC7A-CB9F-4D09-A4DB-5F4C6B1E8DA1}</ProjectGuid>
+    <ProjectGuid>{3B162626-1267-4267-87A0-88F2614ED345}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CalculatorApp.Service</RootNamespace>
-    <AssemblyName>CalculatorApp.Service</AssemblyName>
+    <RootNamespace>CalculatorApp.Database</RootNamespace>
+    <AssemblyName>CalculatorApp.Database</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -40,9 +40,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject, Version=3.3.5.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.3.5\lib\net45\Ninject.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -54,28 +51,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DIModule.cs" />
-    <Compile Include="Interfaces\ICalculatorADOService.cs" />
-    <Compile Include="Interfaces\ICalculatorDBService.cs" />
-    <Compile Include="Interfaces\ICalculatorService.cs" />
+    <Compile Include="CalculatAppOperationDetailRepository.cs" />
+    <Compile Include="CalculatorAppContext.cs" />
+    <Compile Include="Interfaces\ICalculatAppOperationDetailRepository.cs" />
+    <Compile Include="Migrations\202205200514098_CalculatorApp.cs" />
+    <Compile Include="Migrations\202205200514098_CalculatorApp.designer.cs">
+      <DependentUpon>202205200514098_CalculatorApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205200859353_CalculatorApp1.cs" />
+    <Compile Include="Migrations\202205200859353_CalculatorApp1.designer.cs">
+      <DependentUpon>202205200859353_CalculatorApp1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\CalculatAppOperationDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CalculatorADOService.cs" />
-    <Compile Include="Services\CalculatorDBServicecs.cs" />
-    <Compile Include="Services\CalculatorService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CalculatorApp.Database\CalculatorApp.Database.csproj">
-      <Project>{3B162626-1267-4267-87A0-88F2614ED345}</Project>
-      <Name>CalculatorApp.Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CalculatorService\CalculatorApp.Core.csproj">
-      <Project>{9F1BBCF6-6132-45B2-8AF9-CABCFB155E06}</Project>
-      <Name>CalculatorApp.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202205200514098_CalculatorApp.resx">
+      <DependentUpon>202205200514098_CalculatorApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205200859353_CalculatorApp1.resx">
+      <DependentUpon>202205200859353_CalculatorApp1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
