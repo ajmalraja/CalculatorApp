@@ -26,8 +26,10 @@ namespace CalculatorApp.Core.Tests
             {
                 Console.SetOut(sw);
                 _diagnosticDetails.ShowOutputToConsole(1, 1, "ADD",2);
-                var res = string.Format("FirstParameter:1{0}", Environment.NewLine);
-                StringAssert.Contains(sw.ToString().Substring(0,25), res);
+                var firstLine = string.Format("FirstParameter:1{0}", Environment.NewLine);
+                StringAssert.Contains(sw.ToString().Substring(0,25), firstLine);
+                var lastLine = string.Format("Result:2{0}", Environment.NewLine);
+                StringAssert.Contains(sw.ToString().Substring(sw.ToString().Length-10, 10), lastLine);
             }
             
 

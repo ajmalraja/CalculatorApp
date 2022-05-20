@@ -9,5 +9,6 @@ namespace CalculatorApp.Core.Interfaces
     public interface IDiagnosticsDetails
     {
         void ShowOutputToConsole(int firstParameter, int secondParameter, string Operation, int result);
+        void ShowOutputToConsole(string ErrMessage);
     }
 }
