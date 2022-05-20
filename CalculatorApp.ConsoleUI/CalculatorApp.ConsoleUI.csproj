@@ -5,18 +5,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{53FDCC7A-CB9F-4D09-A4DB-5F4C6B1E8DA1}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CalculatorApp.Service</RootNamespace>
-    <AssemblyName>CalculatorApp.Service</AssemblyName>
+    <ProjectGuid>{8B983BF7-501C-4EC5-868E-D19F6B21084C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CalculatorApp.ConsoleUI</RootNamespace>
+    <AssemblyName>CalculatorApp.ConsoleUI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -26,6 +27,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,9 +42,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject, Version=3.3.5.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ninject.3.3.5\lib\net45\Ninject.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -54,26 +53,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DIModule.cs" />
-    <Compile Include="Interfaces\ICalculatorDBService.cs" />
-    <Compile Include="Interfaces\ICalculatorService.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CalculatorDBServicecs.cs" />
-    <Compile Include="Services\CalculatorService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CalculatorApp.Database\CalculatorApp.Database.csproj">
       <Project>{3B162626-1267-4267-87A0-88F2614ED345}</Project>
       <Name>CalculatorApp.Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CalculatorApp.Service\CalculatorApp.Service.csproj">
+      <Project>{53fdcc7a-cb9f-4d09-a4db-5f4c6b1e8da1}</Project>
+      <Name>CalculatorApp.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CalculatorService\CalculatorApp.Core.csproj">
-      <Project>{9F1BBCF6-6132-45B2-8AF9-CABCFB155E06}</Project>
+      <Project>{9f1bbcf6-6132-45b2-8af9-cabcfb155e06}</Project>
       <Name>CalculatorApp.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -24,6 +24,7 @@ namespace CalculatorApp.Core
         public void ShowOutputToConsole(string ErrMessage)
         {
             Console.WriteLine(ErrMessage);
+            Console.WriteLine("The Available operation are (Add,Subtract,Multiply,Divide");
         }
     }
 }

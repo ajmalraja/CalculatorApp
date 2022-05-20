@@ -1,8 +1,11 @@
 ﻿using CalculatorApp.Core;
 using CalculatorApp.Core.Interfaces;
+using CalculatorApp.Database.Interfaces;
+using CalculatorApp.Database.Model;
 using CalculatorApp.Service.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,13 +15,15 @@ namespace CalculatorApp.Service.Services
     public class CalculatorService : ICalculatorService
     {
         private readonly ISimpleCalculator _simplecalculator;
-        private readonly IDiagnosticsDetails _diagnosticDetails;
+        private readonly IDiagnosticsDetails _diagnosticDetails;        
         public CalculatorService(ISimpleCalculator simpleCalculator,
-                                    IDiagnosticsDetails diagnosticsDetails)
+                                    IDiagnosticsDetails diagnosticsDetails                                    
+                                    )
         {
             _simplecalculator = simpleCalculator;
             _diagnosticDetails = diagnosticsDetails;
-        }
+           
+        }        
 
         public int DoTheCalculationLogonConsole(int firstparameter, int secondparameter,  string operation)
         {
@@ -37,5 +42,7 @@ namespace CalculatorApp.Service.Services
             return (int)result;
 
         }
+
+        
     }
 }
