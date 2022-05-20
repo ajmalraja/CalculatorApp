@@ -58,6 +58,10 @@
     <Compile Include="Migrations\202205200514098_CalculatorApp.designer.cs">
       <DependentUpon>202205200514098_CalculatorApp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205200859353_CalculatorApp1.cs" />
+    <Compile Include="Migrations\202205200859353_CalculatorApp1.designer.cs">
+      <DependentUpon>202205200859353_CalculatorApp1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\CalculatAppOperationDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +73,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202205200514098_CalculatorApp.resx">
       <DependentUpon>202205200514098_CalculatorApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205200859353_CalculatorApp1.resx">
+      <DependentUpon>202205200859353_CalculatorApp1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

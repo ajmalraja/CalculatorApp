@@ -17,5 +17,14 @@ namespace CalculatorApp.Database
         }
 
         public DbSet<CalculatAppOperationDetail> CalculatAppOperationDetail { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CalculatAppOperationDetail>()
+                .MapToStoredProcedures(s => s.Insert(u => u.HasName("InsertOperationalDetial", "dbo"))
+                                                .Update(u => u.HasName("UpdateOperationalDetial", "dbo"))
+                                                .Delete(u => u.HasName("DeleteOperationalDetial", "dbo"))
+                );
+        }
     }
 }

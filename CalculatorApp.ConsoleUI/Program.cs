@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,11 +45,16 @@ namespace CalculatorApp.ConsoleUI
         {
             var simpleCalculator=new SimpleCalculator();
             var diagnosticDetails = new DiagnosticDetails();
+            var connection = ConfigurationManager.ConnectionStrings["CalculatorApp"].ConnectionString;
+            var diagnosticDetailsADO = new DiagnosticsDetailsADO(connection);
+
             var operationDetailRepo = new CalculatAppOperationDetailRepository(new CalculatorAppContext());          
               
-            if (mode == 1)
-            
+            if (mode == 1)            
                 return (T)Convert.ChangeType(new CalculatorDBService(simpleCalculator, operationDetailRepo),typeof(T));
+
+            if (mode == 2)
+                return (T)Convert.ChangeType(new CalculatorADOService(simpleCalculator, diagnosticDetailsADO), typeof(T));
 
             return (T)Convert.ChangeType(new CalculatorService(simpleCalculator, diagnosticDetails), typeof(T));
         }
@@ -68,6 +74,9 @@ namespace CalculatorApp.ConsoleUI
 
             var calculatordb = CreateService<CalculatorDBService>(1);
             calculatordb.DoTheCalculationLogInDB(firstNum, secondNum, operation);
+
+            var calculatorADO = CreateService<CalculatorADOService>(2);
+            calculatorADO.DoTheCalculationLogInDB(firstNum, secondNum, operation);
         }
     }
 }

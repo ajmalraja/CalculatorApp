@@ -14,12 +14,13 @@ namespace CalculatorApp.Service.Services
     public class CalculatorDBService : ICalculatorDBService
     {
         private readonly ICalculatAppOperationDetailRepository _operationalDetails;
-        private readonly ISimpleCalculator _simplecalculator;
+        private readonly ISimpleCalculator _simplecalculator;        
+
         public CalculatorDBService(ISimpleCalculator simplecalculator,
                                 ICalculatAppOperationDetailRepository operationalDetails)
         {
             _simplecalculator = simplecalculator;
-            _operationalDetails=operationalDetails; 
+            _operationalDetails=operationalDetails;           
         }
 
         public int DoTheCalculationLogInDB(int firstparameter, int secondparameter, string operation)

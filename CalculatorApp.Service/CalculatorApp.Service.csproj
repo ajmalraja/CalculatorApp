@@ -55,9 +55,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DIModule.cs" />
+    <Compile Include="Interfaces\ICalculatorADOService.cs" />
     <Compile Include="Interfaces\ICalculatorDBService.cs" />
     <Compile Include="Interfaces\ICalculatorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CalculatorADOService.cs" />
     <Compile Include="Services\CalculatorDBServicecs.cs" />
     <Compile Include="Services\CalculatorService.cs" />
   </ItemGroup>
