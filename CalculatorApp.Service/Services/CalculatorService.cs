@@ -13,16 +13,24 @@ namespace CalculatorApp.Service.Services
     {
         private readonly ISimpleCalculator _simplecalculator;
         private readonly IDiagnosticsDetails _diagnosticDetails;
-        public CalculatorService()
+        public CalculatorService(ISimpleCalculator simpleCalculator,
+                                    IDiagnosticsDetails diagnosticsDetails)
         {
-            _simplecalculator = new SimpleCalculator();
-            _diagnosticDetails = new DiagnosticDetails();
+            _simplecalculator = simpleCalculator;
+            _diagnosticDetails = diagnosticsDetails;
         }
 
         public int DoTheCalculationLogonConsole(int firstparameter, int secondparameter,  string operation)
         {
-            
-            var result = _simplecalculator.GetType().GetMethod(operation).Invoke(_simplecalculator, new object[] { firstparameter, secondparameter });                                          
+            var opr = _simplecalculator.GetType().GetMethod(operation);
+
+            if (opr == null)
+            {
+                _diagnosticDetails.ShowOutputToConsole( $"InvalidOption->{operation}");
+                return 0;
+            }
+
+            var result = opr.Invoke(_simplecalculator, new object[] { firstparameter, secondparameter });                                          
 
             _diagnosticDetails.ShowOutputToConsole(firstparameter, secondparameter, operation, (int)result);
 
