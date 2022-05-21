@@ -8,7 +8,7 @@ namespace CalculatorApp.WebApi.Model
         [Required]
         public int FirstNumber { get; set; }
         [Required]
-        [JsonPropertyName("secodnNumber")]
+        [JsonPropertyName("secondNumber")]
         public int SecondNumber { get; set; }
         [Required]
         [JsonPropertyName("operation")]
