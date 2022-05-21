@@ -19,18 +19,24 @@ namespace CalculatorApp.Core
 
         public void StoreOutputToDB(string firstParameter, string secondParameter, string Operation, string result, string processedIn)
         {
-            SqlConnection con = new SqlConnection(connectionstr);
-            con.Open();
-            SqlCommand cmd = new SqlCommand("InsertOperationalDetial");
-            cmd.Connection = con;
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.Add("@FirstParameter", System.Data.SqlDbType.NVarChar).Value = firstParameter;
-            cmd.Parameters.Add("@SecondParameter", System.Data.SqlDbType.NVarChar).Value = secondParameter;
-            cmd.Parameters.Add("@OPerator", System.Data.SqlDbType.NVarChar).Value = Operation;
-            cmd.Parameters.Add("@Result", System.Data.SqlDbType.NVarChar).Value = result;
-            cmd.Parameters.Add("@ProcessedIn", System.Data.SqlDbType.NVarChar).Value = firstParameter;
-            cmd.ExecuteNonQuery();
-            con.Close();
+            try
+            {
+                SqlConnection con = new SqlConnection(connectionstr);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("InsertOperationalDetial");
+                cmd.Connection = con;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.Add("@FirstParameter", System.Data.SqlDbType.NVarChar).Value = firstParameter;
+                cmd.Parameters.Add("@SecondParameter", System.Data.SqlDbType.NVarChar).Value = secondParameter;
+                cmd.Parameters.Add("@OPerator", System.Data.SqlDbType.NVarChar).Value = Operation;
+                cmd.Parameters.Add("@Result", System.Data.SqlDbType.NVarChar).Value = result;
+                cmd.Parameters.Add("@ProcessedIn", System.Data.SqlDbType.NVarChar).Value = firstParameter;
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

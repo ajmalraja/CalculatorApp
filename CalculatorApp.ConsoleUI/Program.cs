@@ -68,15 +68,21 @@ namespace CalculatorApp.ConsoleUI
                 Console.WriteLine("Invalid FirstNumber:");
             if (!int.TryParse(secondInput, out secondNum))
                 Console.WriteLine("Invalid SecondNumber:");
+            try
+            {
+                var calculator = CreateService<CalculatorService>(0);
+                calculator.DoTheCalculationLogonConsole(firstNum, secondNum, operation);
 
-            var calculator = CreateService<CalculatorService>(0);
-            calculator.DoTheCalculationLogonConsole(firstNum, secondNum, operation);
+                var calculatordb = CreateService<CalculatorDBService>(1);
+                calculatordb.DoTheCalculationLogInDB(firstNum, secondNum, operation);
 
-            var calculatordb = CreateService<CalculatorDBService>(1);
-            calculatordb.DoTheCalculationLogInDB(firstNum, secondNum, operation);
-
-            var calculatorADO = CreateService<CalculatorADOService>(2);
-            calculatorADO.DoTheCalculationLogInDB(firstNum, secondNum, operation);
+                var calculatorADO = CreateService<CalculatorADOService>(2);
+                calculatorADO.DoTheCalculationLogInDB(firstNum, secondNum, operation);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

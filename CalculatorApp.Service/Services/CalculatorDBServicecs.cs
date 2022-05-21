@@ -1,4 +1,6 @@
-﻿using CalculatorApp.Core.Interfaces;
+﻿using CalculatorApp.Core;
+using CalculatorApp.Core.Interfaces;
+using CalculatorApp.Database;
 using CalculatorApp.Database.Interfaces;
 using CalculatorApp.Database.Model;
 using CalculatorApp.Service.Interfaces;
@@ -22,22 +24,35 @@ namespace CalculatorApp.Service.Services
             _simplecalculator = simplecalculator;
             _operationalDetails=operationalDetails;           
         }
+        public CalculatorDBService()
+        {               
+            _simplecalculator = new SimpleCalculator();
+            _operationalDetails = new CalculatAppOperationDetailRepository(new CalculatorAppContext());
+        }
 
         public int DoTheCalculationLogInDB(int firstparameter, int secondparameter, string operation)
         {
+             
             var opr = _simplecalculator.GetType().GetMethod(operation);
 
             if (opr == null)
             {
-                _operationalDetails.Add(
+                try
+                {
+                    _operationalDetails.Add(
                     new CalculatAppOperationDetail
                     {
-                        FirstParameter=firstparameter.ToString(),
-                        SecondParameter=secondparameter.ToString(),
-                        OPerator=operation,
-                        Result="Invalid  Operation"                        
+                        FirstParameter = firstparameter.ToString(),
+                        SecondParameter = secondparameter.ToString(),
+                        OPerator = operation,
+                        Result = "Invalid  Operation"
                     }
-                    ); 
+                    );
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
                 return 0;
             }
 
@@ -45,17 +60,23 @@ namespace CalculatorApp.Service.Services
             sw.Start();
             var result = opr.Invoke(_simplecalculator, new object[] { firstparameter, secondparameter });
             sw.Stop();
-            _operationalDetails.Add(
-                    new CalculatAppOperationDetail
-                    {
-                        FirstParameter = firstparameter.ToString(),
-                        SecondParameter = secondparameter.ToString(),
-                        OPerator = operation,
-                        ProcessedIn=sw.ElapsedTicks.ToString()+"Ticks",
-                        Result = result.ToString(),
-                    }
-                    );
-
+            try
+            {
+                _operationalDetails.Add(
+                        new CalculatAppOperationDetail
+                        {
+                            FirstParameter = firstparameter.ToString(),
+                            SecondParameter = secondparameter.ToString(),
+                            OPerator = operation,
+                            ProcessedIn = sw.ElapsedTicks.ToString() + "Ticks",
+                            Result = result.ToString(),
+                        }
+                        );
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return (int)result;
         }
     }
