@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace CalculatorApp.Service.Services
 {
+    /// <summary>
+    /// Console only service
+    /// </summary>
     public class CalculatorService : ICalculatorService
     {
         private readonly ISimpleCalculator _simplecalculator;

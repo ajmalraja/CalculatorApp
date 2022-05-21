@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace CalculatorApp.Service.Services
 {
+    /// <summary>
+    /// Entity Framework was used to store the data 
+    /// </summary>
     public class CalculatorDBService : ICalculatorDBService
     {
         private readonly ICalculatAppOperationDetailRepository _operationalDetails;
@@ -24,6 +27,9 @@ namespace CalculatorApp.Service.Services
             _simplecalculator = simplecalculator;
             _operationalDetails=operationalDetails;           
         }
+        /// <summary>
+        /// This constructor is to handle the  unsupported DI type
+        /// </summary>
         public CalculatorDBService()
         {               
             _simplecalculator = new SimpleCalculator();

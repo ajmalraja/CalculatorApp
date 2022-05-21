@@ -9,7 +9,13 @@ using System.Threading.Tasks;
 namespace CalculatorApp.Core
 {
     public class DiagnosticDetails : IDiagnosticsDetails
-    {
+    {   /// <summary>
+        /// Diagnostic component to show the out put on console only
+        /// </summary>
+        /// <param name="firstParameter"></param>
+        /// <param name="secondParameter"></param>
+        /// <param name="operation"></param>
+        /// <param name="result"></param>
        
         public void ShowOutputToConsole(int firstParameter, int secondParameter, string operation, int result)
         {
@@ -20,7 +26,10 @@ namespace CalculatorApp.Core
             Console.WriteLine($"Result:{result.ToString()}");
            
         }
-
+        /// <summary>
+        /// To capture the error message
+        /// </summary>
+        /// <param name="ErrMessage"></param>
         public void ShowOutputToConsole(string ErrMessage)
         {
             Console.WriteLine(ErrMessage);

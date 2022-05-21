@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace CalculatorApp.Core
 {
+    /// <summary>
+    /// Calculator Core Operation work only for integer
+    /// </summary>
+
     public class SimpleCalculator : ISimpleCalculator
     {
+       
         public int Add(int start, int amount)
         {
             return start + amount;
