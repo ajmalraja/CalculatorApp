@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 
 namespace CalculatorApp.Core
-{
+{   /// <summary>
+    /// Diagnostic details to store the inputs and result in the database using ADO.Net
+    /// </summary>
     public class DiagnosticsDetailsADO : IDiagnosticsDetialsADO
     {
         private string connectionstr { get; set; }
@@ -16,7 +18,14 @@ namespace CalculatorApp.Core
         {
             connectionstr = _constr;
         }
-
+        /// <summary>
+        /// This use InsertOperationalDetial stored procedure to insert database to the table
+        /// </summary>
+        /// <param name="firstParameter"></param>
+        /// <param name="secondParameter"></param>
+        /// <param name="Operation"></param>
+        /// <param name="result"></param>
+        /// <param name="processedIn"></param>
         public void StoreOutputToDB(string firstParameter, string secondParameter, string Operation, string result, string processedIn)
         {
             try

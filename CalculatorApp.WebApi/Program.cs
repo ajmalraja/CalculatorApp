@@ -1,10 +1,9 @@
 using CalculatorApp.Core;
-using CalculatorApp.Core.Interfaces;
-using CalculatorApp.Database;
-using CalculatorApp.Database.Interfaces;
 using CalculatorApp.Service.Interfaces;
 using CalculatorApp.Service.Services;
-using Microsoft.Extensions.DependencyInjection;
+using CalculatorApp.WebApi.Controllers;
+using NLog;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var constr = builder.Configuration.GetConnectionString("CalculatorApp");
@@ -18,8 +17,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICalculatorDBService, CalculatorDBService>();
 
+//Logging service added
+builder.Services.AddLogging(logging => logging.AddConsole());
+builder.Services.AddSingleton<Microsoft.Extensions.Logging.ILogger>(svc => svc.GetRequiredService<ILogger<CalculatorController>>());
+
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

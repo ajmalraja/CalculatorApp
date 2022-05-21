@@ -10,10 +10,14 @@ using System.Threading.Tasks;
 
 namespace CalculatorApp.Service.Services
 {
+    /// <summary>
+    /// Calculator ADO service
+    /// </summary>
     public class CalculatorADOService : ICalculatorADOService
     {
         private readonly ISimpleCalculator _simpleCalculator;
         private readonly IDiagnosticsDetialsADO _diagnosticsDetialsADO;
+
         public CalculatorADOService(ISimpleCalculator simpleCalculator, IDiagnosticsDetialsADO diagnosticsDetialsADO)
         {
             _simpleCalculator = simpleCalculator;

@@ -17,16 +17,18 @@ namespace CalculatorApp.WebApi.Controllers
     [ApiController]
     public class CalculatorController : ControllerBase
     {
-        private readonly ICalculatorDBService _calculatordbservice;     
-
-        public CalculatorController(ICalculatorDBService calculatordbservice)
+        private readonly ICalculatorDBService _calculatordbservice;
+        private readonly ILogger _logger;
+        public CalculatorController(ICalculatorDBService calculatordbservice,ILogger logger)
         {            
-            _calculatordbservice=calculatordbservice;            
+            _calculatordbservice=calculatordbservice;  
+            _logger=logger;
         }
 
         [HttpGet]
         public string Get()
         {
+            _logger.LogInformation($"{DateTime.Now}:-Check Alive passed");
             return "Alive";
         }
 
@@ -34,10 +36,13 @@ namespace CalculatorApp.WebApi.Controllers
         // POST api/<CalculatorController>
         [HttpPost]
         public HttpResponseMessage Post([FromBody] CalculatorModel calulatormodel)
-        {          
+        {
+            _logger.LogInformation($"{DateTime.Now}:- post method was called");
 
             if (!ModelState.IsValid)
             {
+                _logger.LogInformation($"{DateTime.Now}:- post method was called with invalid model ");
+
                 return new ErrorResponse
                 {
                     StatusCode=HttpStatusCode.BadRequest,
@@ -47,6 +52,8 @@ namespace CalculatorApp.WebApi.Controllers
             
             if (!CalculatorAppHelpercs.ValidateOperations(calulatormodel.Operation))
             {
+                _logger.LogInformation($"{DateTime.Now}:- post method was called with invalid operation ");
+
                 return new ErrorResponse
                 {
                     StatusCode = HttpStatusCode.BadRequest,
@@ -56,7 +63,11 @@ namespace CalculatorApp.WebApi.Controllers
                 };
             }
 
+            _logger.LogInformation($"{DateTime.Now}:- called the calculatordbservice FirstNumber=>{calulatormodel.FirstNumber} SecondNumber=>{calulatormodel.SecondNumber}" +
+                                    $" Operation=>{calulatormodel.Operation} ");
+
             var res=_calculatordbservice.DoTheCalculationLogInDB(calulatormodel.FirstNumber, calulatormodel.SecondNumber, calulatormodel.Operation);
+
             return new ValidResponse
             {
                 StatusCode = HttpStatusCode.OK,
